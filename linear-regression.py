@@ -7,21 +7,70 @@ tf.set_random_seed(777)
 '''
 HYPOTHESIS FUNCTION: H(x) = Wx + b 
 COST FUNCTION: cost(W,b) = (1/m)m(sigma)i=1(H(x^(i) - y^(y))^2 (MSE) 
+GRADIENT FUNCTION: cost'(W, b)
+
+1. build graph
+2. feed data + run graph
+3. update vars in graph + return values
 '''
+
 # (1/m)m(sigma)i=1 is the mean
-# m is the 
-train_x = [1, 2, 3] 
-train_y = [1, 2, 3]
 
 W = tf.Variable(tf.random_normal([1]), name = 'weight')
 b = tf. Variable(tf.random_normal([1]), name = 'bias')
 
-#
-hypo = train_x*W + b
+train_x = [1, 2, 3]
+train_y = [1, 2, 3]
 
 # H(x) = Wx + b 
 # W is weight, b is bias
+hypo = train_x*W + b
 
 # cost/loss function (mean of (hypothesis - train_y)^2)
 # measures the distance between dataset and prediction
 cost = tf.reduce_mean(tf.square(hypo - train_y))
+
+# Gradient Descent, to minimize
+
+# iterate through data points,
+# (weight + bias vals)
+# size of update is controlled
+# by learning rate
+
+opt = tf.train.GradientDescentOptimizer(learning_rate=0.01)
+train = opt.minimize(cost)
+
+# start graph session
+
+# training: iteratively improving prediction
+# by looping through data
+# update W and b values
+# according to gradient of cost 
+# function (cost'(W, b))
+
+# hyperparamters: learning rate + # of iterations
+
+session = tf.Session()
+
+# initialize
+
+session.run(tf.global_variables_initializer())
+
+# fit line
+
+for i in range(2001):
+
+    session.run(train)
+
+    if i % 10 == 0:
+        print(i, session.run(cost), session.run(W), session.run(b))
+    
+
+
+'''
+CONCLUSION:
+
+tf.placeholder is used to feed actual training examples
+tf.Variable is trained (changed) from the actual training
+
+'''
