@@ -20,7 +20,7 @@ W = tf.Variable(tf.random_normal([1]), name = 'weight')
 b = tf. Variable(tf.random_normal([1]), name = 'bias')
 
 train_x = [1, 2, 3]
-train_y = [1, 2, 3]
+train_y = [10, 20, 30]
 
 # H(x) = Wx + b 
 # W is weight, b is bias
@@ -37,7 +37,7 @@ cost = tf.reduce_mean(tf.square(hypo - train_y))
 # size of update is controlled
 # by learning rate
 
-opt = tf.train.GradientDescentOptimizer(learning_rate=0.01)
+opt = tf.train.GradientDescentOptimizer(learning_rate=0.00001)
 train = opt.minimize(cost)
 
 # start graph session
@@ -58,12 +58,12 @@ session.run(tf.global_variables_initializer())
 
 # fit line
 
-for i in range(2001):
+for i in range(10000):
 
     session.run(train)
 
-    if i % 10 == 0:
-        print(i, session.run(cost), session.run(W), session.run(b))
+    if i % 50 == 0:
+        print(i, " cost:", session.run(cost), " weight:", session.run(W), " bias:", session.run(b))
     
 
 
