@@ -1,5 +1,5 @@
 import tensorflow as tf
-tf.set_random_seed(777)	
+
 # y = mx + b, where m and b are vars, y represents prediction
 # cost function is used to optimize weights
 

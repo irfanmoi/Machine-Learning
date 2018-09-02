@@ -3,13 +3,14 @@ import numpy as np
 # fix some error
 ld_v = tf.logging.get_verbosity()
 tf.logging.set_verbosity(tf.logging.ERROR)
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import matplotlib.pyplot as plot  
 # import MNIST examples
 # Functions for downloading and reading MNIST data
 import tensorflow.examples.tutorials.mnist.input_data as input_data
 # one_hot means a sparse vector for every observation
 # every observation = class label = 1, every other = 0
-# 
 MNIST = input_data.read_data_sets("MNIST", one_hot=True)
 
 '''
