@@ -1,5 +1,6 @@
 import tensorflow as tf 
 import numpy as np
+# fix some error
 ld_v = tf.logging.get_verbosity()
 tf.logging.set_verbosity(tf.logging.ERROR)
 import matplotlib.pyplot as plot  
@@ -9,7 +10,7 @@ import tensorflow.examples.tutorials.mnist.input_data as input_data
 # one_hot means a sparse vector for every observation
 # every observation = class label = 1, every other = 0
 # 
-MNIST = input_data.read_data_sets("MNIST_data/", one_hot=True)
+MNIST = input_data.read_data_sets("MNIST", one_hot=True)
 
 '''
 
@@ -24,7 +25,9 @@ Types of logistic regression
 2. multi (blue, red, or yellow)
 3. ordinal (low, medium, high)
 
-cost function: cross-entropy/log loss function
+activation: softmax function
+cost/loss: cross-entropy/log loss function
+optimizer: stochastic gradient descent 
 
 '''
 # MNIST: large database of handwritten digits, 60k for training, 10k for testing
